@@ -1,7 +1,5 @@
 // So we've got a row of cells, one of which (number 40) is alive.
-let cells =
-    Array.init 80 (fun i -> if i = 40 then 1 else 0)
-    |> Array.toList
+let cells = List.init 80 (fun i -> if i = 40 then 1 else 0)
 
 // Let's print living cells as "X" and dead cells as a space, " ".
 let cellChar =
