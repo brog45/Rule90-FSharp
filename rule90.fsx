@@ -22,7 +22,7 @@ let next rowOfCells =
     |> Seq.map (fun a -> (a.[0] + a.[2]) % 2)
     |> Seq.toList
 
-// A sequence of with a loop inside that yields the result of each iteration 
+// A sequence with a loop inside that yields the result of each iteration 
 // abstracts the loop from what we may want to do with the result of each 
 // iteration.
 let culture = seq {
