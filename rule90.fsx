@@ -22,16 +22,19 @@ let next rowOfCells =
     |> Seq.map (fun a -> (a.[0] + a.[2]) % 2)
     |> Seq.toList
 
-// loop is a tail recursive function that prints cells then calculates the 
-// next row of cells, repeating for the specified number of iterations.
-let rec loop iterations cells =
-    if iterations > 0 then
-        cells |> printCells
-        cells |> next |> loop (iterations - 1)
-    else
-        ()    
+// A sequence of with a loop inside that yields the result of each iteration 
+// abstracts the loop from what we may want to do with the result of each 
+// iteration.
+let culture = seq {
+    let mutable generation = cells
+    while true do
+        yield generation
+        generation <- next generation
+}
 
-// print 7 iterations
-cells |> loop 7
+// take 7 iterations and print them
+culture 
+|> Seq.take 7 
+|> Seq.iter printCells
 
 // vim: et ai ts=4 sw=4
